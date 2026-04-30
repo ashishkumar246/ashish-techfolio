@@ -1,0 +1,3 @@
+.vscode/
+backend/visitors.db
+backend/__pycache__/

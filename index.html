@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashish Techfolio</title>
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+  <div id="loader">
+    <h1>Ashish Techfolio</h1>
+
+
+    <div class="loader-percentage">
+      <span id="percentage">0</span>%
+    </div>
+  </div>
+
+  <main id="homepage">
+
+  <header class="navbar">
+    <div class="logo">AK</div>
+
+    <div class="nav-actions">
+  <div class="visitor-badge">
+    Visitors: <span id="navVisitorCount">0</span>
+  </div>
+  
+  <button class="theme-btn" id="themeToggle">☾</button>
+
+  <button class="menu-btn" id="menuToggle">☰</button>
+  
+</div>
+  </header>
+  <nav class="mobile-menu" id="mobileMenu">
+  <a href="#">Home</a>
+<a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+  <section class="hero fade-up">
+    <div class="hero-line"></div>
+
+    <p class="hero-tag">PYTHON FULL STACK DEVELOPER</p>
+
+    <h1>Ashish Kumar</h1>
+
+    <p class="hero-subtitle">
+      Python Full Stack Developer | Backend Developer
+    </p>
+
+    <p class="hero-description">
+      Passionate about building scalable and efficient web applications.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#projects" class="btn primary-btn">VIEW WORK</a>
+      <a href="#contact" class="btn">CONTACT</a>
+      <a href="assets/Ashish_Kumar_Resume.pdf" target="_blank" class="btn">
+  RESUME ↗
+</a>
+    </div>
+  </section>
+<!-- PROJECTS SECTION -->
+<section class="projects-section" id="projects">
+  <div class="section-heading">
+    <p>SELECTED WORK</p>
+    <h2>Projects Built</h2>
+  </div>
+
+  <div class="projects-grid" id="projectsGrid">
+    <!-- Projects will come here from GitHub API -->
+  </div>
+
+</section>
+
+<!-- SKILLS SECTION -->
+<section class="skills-section" id="skills">
+  <div class="section-heading">
+    <p>TECH STACK</p>
+    <h2>Skills</h2>
+  </div>
+
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <h3>Backend</h3>
+      <p>Python, FastAPI, Flask</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Database</h3>
+      <p>PostgreSQL, SQLite</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Frontend</h3>
+      <p>HTML, CSS, JavaScript</p>
+    </div>
+
+    <div class="skill-card">
+      <h3>Tools</h3>
+      <p>Git, Postman, VS Code</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section" id="contact">
+  <div class="section-heading">
+    <p>GET IN TOUCH</p>
+    <h2>Contact</h2>
+  </div>
+
+  <div class="contact-grid">
+
+    <a href="mailto:ashishkumar02361@gmail.com" class="contact-card">
+      <h3>Email</h3>
+      <p>ashishkumar02361@gmail.com</p>
+    </a>
+
+    <a href="https://github.com/ashishkumar246" target="_blank" class="contact-card">
+      <h3>GitHub</h3>
+      <p>github.com/ashishkumar246</p>
+    </a>
+
+    <a href="https://www.linkedin.com/in/ashishkumar200/" target="_blank" class="contact-card">
+      <h3>LinkedIn</h3>
+      <p>https://www.linkedin.com/in/ashishkumar200/</p>
+    </a>
+
+    <a href="https://x.com/eyetil1" target="_blank" class="contact-card">
+      <h3>X </h3>
+      <p>https://x.com/eyetil1</p>
+    </a>
+
+
+  </div>
+</section>
+<footer class="footer">
+  <p>© <span id="year"></span> Ashish Kumar. All rights reserved.</p>
+  
+  <div class="footer-links">
+    <a href="https://github.com/ashishkumar246" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/ashishkumar200/" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+</main>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<script src="script.js"></script>
+</html>
