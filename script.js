@@ -7,26 +7,7 @@ const totalDuration = 3500;
 const interval = 20;
 
 let elapsed = 0;
-const visitorAPI = sessionStorage.getItem("visited")
-  ? "http://127.0.0.1:8000/visitor-count"
-  : "http://127.0.0.1:8000/visitor-visit";
 
-fetch(visitorAPI, {
-  method: sessionStorage.getItem("visited") ? "GET" : "POST"
-})
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("navVisitorCount").textContent = data.visitors;
-    sessionStorage.setItem("visited", "true");
-  })
-  .catch(err => console.log(err));
-
-fetch("http://127.0.0.1:8000/visitor-count")
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("navVisitorCount").textContent = data.visitors;
-  })
-  .catch(err => console.log(err));
 
 function easeOut(progress) {
   return 1 - Math.pow(1 - progress, 3);
