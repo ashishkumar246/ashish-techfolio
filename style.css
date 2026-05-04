@@ -536,6 +536,10 @@ body.light-mode .mobile-menu a {
 .footer-links a:hover {
   color: #ffb000;
 }
+.hero-open {
+  margin-top: 8px;
+  opacity: 0.8;
+}
 
 
 
