@@ -1,3 +1,12 @@
 .vscode/
 backend/visitors.db
 backend/__pycache__/
+
+.env
+backend/.env
+venv/
+backend/venv/
+*.pyc
+*.db
+backend/chroma_db/
+backend/data/
