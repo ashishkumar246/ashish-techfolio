@@ -161,5 +161,27 @@
 </main>
 
 <div class="menu-overlay" id="menuOverlay"></div>
+<!-- AI Resume Assistant -->
+<div class="chatbot-widget">
+  <button id="chatToggle" class="chat-toggle">AI</button>
+
+  <div id="chatBox" class="chat-box">
+    <div class="chat-header">
+      <span>Ask Ashish AI</span>
+      <button id="chatClose">×</button>
+    </div>
+
+    <div id="chatMessages" class="chat-messages">
+      <div class="bot-message">
+        Hi, I can answer questions from Ashish's resume.
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <input id="chatInput" type="text" placeholder="Ask about skills, projects..." />
+      <button id="chatSend">Send</button>
+    </div>
+  </div>
+</div>
 <script src="script.js"></script>
 </html>

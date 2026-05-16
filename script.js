@@ -97,3 +97,64 @@ fetch("https://api.github.com/users/ashishkumar246/repos")
   .catch(err => console.log(err));
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+const chatToggle = document.getElementById("chatToggle");
+const chatBox = document.getElementById("chatBox");
+const chatClose = document.getElementById("chatClose");
+const chatInput = document.getElementById("chatInput");
+const chatSend = document.getElementById("chatSend");
+const chatMessages = document.getElementById("chatMessages");
+
+const RAG_API_URL = "http://127.0.0.1:8000/ask";
+
+chatToggle.addEventListener("click", () => {
+  chatBox.classList.toggle("show-chat");
+});
+
+chatClose.addEventListener("click", () => {
+  chatBox.classList.remove("show-chat");
+});
+
+function addMessage(message, type) {
+  const messageDiv = document.createElement("div");
+  messageDiv.classList.add(type === "user" ? "user-message" : "bot-message");
+  messageDiv.textContent = message;
+  chatMessages.appendChild(messageDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+async function sendChatMessage() {
+  const question = chatInput.value.trim();
+
+  if (!question) return;
+
+  addMessage(question, "user");
+  chatInput.value = "";
+
+  addMessage("Thinking...", "bot");
+
+  try {
+    const response = await fetch(RAG_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ question })
+    });
+
+    const data = await response.json();
+
+    chatMessages.lastChild.textContent = data.answer || "No answer received.";
+  } catch (error) {
+    chatMessages.lastChild.textContent = "Backend is not reachable. Please check FastAPI server.";
+    console.error(error);
+  }
+}
+
+chatSend.addEventListener("click", sendChatMessage);
+
+chatInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    sendChatMessage();
+  }
+});
