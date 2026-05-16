@@ -1,3 +1,5 @@
 .vscode/
 backend/visitors.db
 backend/__pycache__/
+backend/.env
+.env
