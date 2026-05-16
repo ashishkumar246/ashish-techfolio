@@ -1,29 +1,33 @@
 import chromadb
-
 from sentence_transformers import SentenceTransformer
 from chunker import get_resume_chunks
 
-client = chromadb.PersistentClient(path="chroma_db")
 
-collection = client.get_or_create_collection(
-    name="resume_chunks"
-)
+def build_vector_store():
+    client = chromadb.PersistentClient(path="chroma_db")
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
-
-chunks = get_resume_chunks()
-
-for section, content in chunks.items():
-
-    embedding = model.encode(content).tolist()
-
-    collection.add(
-        ids=[section],
-        embeddings=[embedding],
-        documents=[content],
-        metadatas=[{"section": section}]
+    collection = client.get_or_create_collection(
+        name="resume_chunks"
     )
 
-    print(f"Stored: {section}")
+    model = SentenceTransformer("all-MiniLM-L6-v2")
 
-print("All chunks stored successfully")
+    chunks = get_resume_chunks()
+
+    for section, content in chunks.items():
+        embedding = model.encode(content).tolist()
+
+        collection.upsert(
+            ids=[section],
+            embeddings=[embedding],
+            documents=[content],
+            metadatas=[{"section": section}]
+        )
+
+        print(f"Stored/Updated: {section}")
+
+    print("All chunks stored successfully")
+
+
+if __name__ == "__main__":
+    build_vector_store()

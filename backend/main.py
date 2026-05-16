@@ -19,9 +19,15 @@ def home():
 
 @app.post("/ask")
 def ask_question(request: QuestionRequest):
+    from vector_store import build_vector_store
     from rag import answer_question
+
+    build_vector_store()
 
     answer = answer_question(request.question)
     return {"answer": answer}
+
+
+
     
     
