@@ -541,5 +541,32 @@ body.light-mode .mobile-menu a {
   opacity: 0.8;
 }
 
+/* LIGHT MODE CARD FIXES */
 
+body.light-mode .project-card,
+body.light-mode .skill-card,
+body.light-mode .contact-card {
+  background: #ffffff;
+  color: #050505;
+  border: 1px solid #d0d0d0;
+}
+
+body.light-mode .project-card h3,
+body.light-mode .skill-card h3,
+body.light-mode .contact-card h3 {
+  color: #050505;
+}
+
+body.light-mode .project-card p,
+body.light-mode .skill-card p,
+body.light-mode .contact-card p,
+body.light-mode .project-card span {
+  color: #333;
+}
+
+body.light-mode .project-card:hover,
+body.light-mode .skill-card:hover,
+body.light-mode .contact-card:hover {
+  border-color: #ffb000;
+}
 
