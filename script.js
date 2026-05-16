@@ -67,9 +67,10 @@ menuOverlay.addEventListener("click", () => {
 const projectsGrid = document.getElementById("projectsGrid");
 
 const selectedRepos = [
-  "trustguard-agent",
-  "weather-news-chatbot",
-  "postgres-data-manager"
+   "ashish-techfolio",
+   "fastapi-postgresql-crud-dashboard",
+   "trustguard-agent",
+   "weather-news-chatbot"
 ];
 
 fetch("https://api.github.com/users/ashishkumar246/repos")
