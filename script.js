@@ -67,8 +67,9 @@ menuOverlay.addEventListener("click", () => {
 const projectsGrid = document.getElementById("projectsGrid");
 
 const selectedRepos = [
+  "nutrition-ai-rag",
+  "fastapi-postgresql-crud-dashboard",
    "ashish-techfolio",
-   "fastapi-postgresql-crud-dashboard",
    "trustguard-agent",
    "weather-news-chatbot"
 ];
