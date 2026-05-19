@@ -572,7 +572,7 @@ body.light-mode .contact-card:hover {
 .close-menu-btn {
   position: absolute;
   top: 24px;
-  right: 24px;
+  left: 24px;
   background: transparent;
   border: none;
   color: white;
