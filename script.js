@@ -98,3 +98,9 @@ fetch("https://api.github.com/users/ashishkumar246/repos")
   .catch(err => console.log(err));
 
 document.getElementById("year").textContent = new Date().getFullYear();
+const closeMenu = document.getElementById("closeMenu");
+
+closeMenu.addEventListener("click", () => {
+  mobileMenu.classList.remove("show-menu");
+  menuOverlay.classList.remove("show-overlay");
+});

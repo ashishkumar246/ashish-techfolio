@@ -569,4 +569,18 @@ body.light-mode .skill-card:hover,
 body.light-mode .contact-card:hover {
   border-color: #ffb000;
 }
+.close-menu-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 34px;
+  cursor: pointer;
+}
+
+body.light-mode .close-menu-btn {
+  color: #050505;
+}
 
