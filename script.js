@@ -66,37 +66,81 @@ menuOverlay.addEventListener("click", () => {
 
 const projectsGrid = document.getElementById("projectsGrid");
 
-const selectedRepos = [
-  "nutrition-ai-rag",
-  "fastapi-postgresql-crud-dashboard",
-   "ashish-techfolio",
-   "trustguard-agent",
-   "weather-news-chatbot"
+projectsGrid.innerHTML = `<p class="projects-status">Loading featured projects...</p>`;
+
+const featuredProjects = [
+  {
+    repo: "AskDocs-ai-rag",
+    title: "AskDocs AI RAG",
+    type: "AI Knowledge Assistant",
+    description:
+      "Production-style RAG system for intelligent PDF question answering using FastAPI, ChromaDB, Sentence Transformers, and local LLMs.",
+    tech: ["Python", "FastAPI", "ChromaDB", "Ollama"],
+  },
+  {
+    repo: "fastapi-postgresql-crud-dashboard",
+    title: "Employee Management API",
+    type: "Full Stack Dashboard",
+    description:
+      "A backend CRUD dashboard with FastAPI, PostgreSQL, JWT auth, and clean data management flows.",
+    tech: ["FastAPI", "PostgreSQL", "JWT", "Dashboard"],
+  },
+  {
+    repo: "trustguard-agent",
+    title: "TrustGuard Agent",
+    type: "AI Safety Tool",
+    description:
+      "A FastAPI prototype that evaluates AI agent and API trust scores using identity, reputation, and risk signals.",
+    tech: ["Python", "FastAPI", "AI Agents", "Risk"],
+  },
+  {
+    repo: "weather-news-chatbot",
+    title: "Weather & News Chatbot",
+    type: "API Data App",
+    description:
+      "A Flask app that provides real-time weather updates and latest news using external APIs.",
+    tech: ["Python", "Flask", "APIs", "Chatbot"],
+  },
 ];
 
 fetch("https://api.github.com/users/ashishkumar246/repos")
   .then(res => res.json())
   .then(data => {
-    const filtered = data.filter(repo =>
-      selectedRepos.includes(repo.name)
-    );
+    const filtered = featuredProjects
+      .map(project => {
+        const repo = data.find(item => item.name === project.repo);
+        return repo ? { ...project, url: repo.html_url } : null;
+      })
+      .filter(Boolean);
 
-    filtered.forEach(repo => {
+    projectsGrid.innerHTML = "";
+
+    if (!filtered.length) {
+      projectsGrid.innerHTML = `<p class="projects-status">No featured projects found right now.</p>`;
+      return;
+    }
+
+    filtered.forEach(project => {
       const card = document.createElement("div");
       card.classList.add("project-card");
 
       card.innerHTML = `
-        <h3>${repo.name.replaceAll("-", " ")}</h3>
-        <p>${repo.description || "No description available"}</p>
-        <span>${repo.language || "Tech not specified"}</span>
-        <br><br>
-        <a href="${repo.html_url}" target="_blank" class="btn">VIEW CODE</a>
+        <p class="project-type">${project.type}</p>
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <div class="project-tech">
+          ${project.tech.map(tech => `<span class="tech-pill">${tech}</span>`).join("")}
+        </div>
+        <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="btn">VIEW CODE</a>
       `;
 
       projectsGrid.appendChild(card);
     });
   })
-  .catch(err => console.log(err));
+  .catch(err => {
+    console.log(err);
+    projectsGrid.innerHTML = `<p class="projects-status">Unable to load projects right now. Please try again later.</p>`;
+  });
 
 document.getElementById("year").textContent = new Date().getFullYear();
 const closeMenu = document.getElementById("closeMenu");
