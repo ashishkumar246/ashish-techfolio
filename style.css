@@ -652,4 +652,122 @@ body.light-mode .contact-card:hover {
 body.light-mode .close-menu-btn {
   color: #050505;
 }
+.experience-section {
+  margin-top: 260px;
+  padding-bottom: 100px;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.experience-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid #333;
+  padding: 32px;
+  background: #080808;
+}
+
+.company-logo {
+  width: 78px;
+  height: 78px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: white;
+  padding: 8px;
+}
+
+.experience-card h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.experience-card .role {
+  color: #ffffff;
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.experience-card .duration {
+  color: #cfcfcf;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+}
+body.light-mode .experience-card {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  border-radius: 14px;
+}
+body.light-mode .experience-card,
+body.light-mode .experience-card h3,
+body.light-mode .experience-card .role {
+  color: #050505;
+}
+
+body.light-mode .experience-card .duration {
+  color: #555;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
