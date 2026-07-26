@@ -101,6 +101,15 @@ const featuredProjects = [
       "A Flask app that provides real-time weather updates and latest news using external APIs.",
     tech: ["Python", "Flask", "APIs", "Chatbot"],
   },
+  {
+    title: "UI/UX Design Portfolio",
+    type: "Design Showcase",
+    description:
+      "A collection of UI/UX design work, product screens, visual concepts, and interface explorations showcased on Behance.",
+    tech: ["UI/UX", "Product Design", "Behance", "Prototyping"],
+    url: "https://www.behance.net/98f2ad75",
+    external: true,
+  },
 ];
 
 fetch("https://api.github.com/users/ashishkumar246/repos")
@@ -108,6 +117,10 @@ fetch("https://api.github.com/users/ashishkumar246/repos")
   .then(data => {
     const filtered = featuredProjects
       .map(project => {
+        if (project.external) {
+          return project;
+        }
+
         const repo = data.find(item => item.name === project.repo);
         return repo ? { ...project, url: repo.html_url } : null;
       })
@@ -131,7 +144,7 @@ fetch("https://api.github.com/users/ashishkumar246/repos")
         <div class="project-tech">
           ${project.tech.map(tech => `<span class="tech-pill">${tech}</span>`).join("")}
         </div>
-        <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="btn">VIEW CODE</a>
+        <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="btn">${project.external ? "VIEW DESIGN" : "VIEW CODE"}</a>
       `;
 
       projectsGrid.appendChild(card);
