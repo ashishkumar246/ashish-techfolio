@@ -11,15 +11,22 @@
 
 </head>
 <body>
-
   <div id="loader">
+  <div class="loader-orb" aria-hidden="true"></div>
+
+  <div class="loader-content">
     <h1>Ashish Techfolio</h1>
 
-
-    <div class="loader-percentage">
-      <span id="percentage">0</span>%
-    </div>
+    <p class="loader-message" id="loaderMessage">
+      Building Intelligent Products...
+    </p>
   </div>
+
+  <div class="loader-percentage">
+    <span id="percentage">0</span>%
+  </div>
+</div>
+
 
   <main id="homepage">
 
@@ -45,14 +52,25 @@
 </nav>
 
   <section class="hero fade-up">
+    <!-- GLASS ORBS BACKGROUND -->
+<div class="hero-visuals" aria-hidden="true">
+  <div class="hero-glow hero-glow-one"></div>
+  <div class="hero-glow hero-glow-two"></div>
+
+  <div class="glass-orb orb-large" data-depth="28"></div>
+  <div class="glass-orb orb-medium" data-depth="20"></div>
+  <div class="glass-orb orb-small" data-depth="34"></div>
+
+  <div class="hero-noise"></div>
+</div>
     <div class="hero-line"></div>
 
-    <p class="hero-tag">PRODUCT ANALYST • BACKEND ENGINEER • GENERATIVE AI</p>
+    <p class="hero-tag">PRODUCT  • BACKEND  • GENERATIVE AI • UI/UX </p>
 
     <h1>Ashish Kumar</h1>
 
     <p class="hero-description">
-      Product Analyst at Paytm with expertise in APIs, backend systems, and GenAI-powered products.
+      I enjoy brainstorming ideas, understanding real user problems, and transforming them into intelligent, scalable products through Product, AI, Backend, and Design.
     </p>
    
    
@@ -83,7 +101,7 @@
         <h3>Paytm</h3>
         <p class="role">Product Analyst</p>
         <p class="duration">May 2026 – Present</p>
-        <p class="experience-tags">Product Analysis • Requirement Management • Stakeholder Collaboration</p>
+        <p class="experience-tags">Product Analysis • Requirement Management • Stakeholder Collaboration • UI/UX</p>
       </div>
     </div>
 
@@ -203,7 +221,13 @@
 </footer>
 
 </main>
-
+<button
+  class="floating-menu-btn"
+  id="floatingMenuBtn"
+  aria-label="Open navigation menu"
+>
+  ☰
+</button>
 <div class="menu-overlay" id="menuOverlay"></div>
 <script src="script.js"></script>
 </html>

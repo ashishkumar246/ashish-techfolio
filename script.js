@@ -1,16 +1,42 @@
-const percentEl = document.getElementById("percentage");
 
+
+const percentEl = document.getElementById("percentage");
 const loader = document.getElementById("loader");
 const homepage = document.getElementById("homepage");
+const loaderMessage = document.getElementById("loaderMessage");
 
 const totalDuration = 3500;
 const interval = 20;
 
-let elapsed = 0;
+const loaderMessages = [
+  "Building Intelligent Products...",
+  "Designing Experiences...",
+  "Engineering AI...",
+  "Building Scalable Backends...",
+  "Almost Ready..."
+];
 
+const messageDuration = totalDuration / loaderMessages.length;
+
+let elapsed = 0;
+let currentMessageIndex = 0;
 
 function easeOut(progress) {
   return 1 - Math.pow(1 - progress, 3);
+}
+
+function updateLoaderMessage(index) {
+  if (!loaderMessage || index === currentMessageIndex) {
+    return;
+  }
+
+  currentMessageIndex = index;
+  loaderMessage.classList.add("is-changing");
+
+  setTimeout(() => {
+    loaderMessage.textContent = loaderMessages[index];
+    loaderMessage.classList.remove("is-changing");
+  }, 220);
 }
 
 const counter = setInterval(() => {
@@ -21,12 +47,21 @@ const counter = setInterval(() => {
 
   percentEl.textContent = Math.floor(percentProgress * 100);
 
+  const nextMessageIndex = Math.min(
+    Math.floor(elapsed / messageDuration),
+    loaderMessages.length - 1
+  );
+
+  updateLoaderMessage(nextMessageIndex);
+
   if (elapsed >= totalDuration) {
     clearInterval(counter);
 
     percentEl.textContent = 100;
+    loaderMessage.textContent = "Almost Ready...";
 
     setTimeout(() => {
+      loader.classList.add("loader-complete");
       loader.classList.add("fade-out");
 
       setTimeout(() => {
@@ -37,6 +72,7 @@ const counter = setInterval(() => {
     }, 200);
   }
 }, interval);
+
 
 const themeToggle = document.getElementById("themeToggle");
 
@@ -55,8 +91,11 @@ const mobileMenu = document.getElementById("mobileMenu");
 const menuOverlay = document.getElementById("menuOverlay");
 
 menuToggle.addEventListener("click", () => {
+  const menuWillOpen = !mobileMenu.classList.contains("show-menu");
+
   mobileMenu.classList.toggle("show-menu");
   menuOverlay.classList.toggle("show-overlay");
+  document.body.classList.toggle("menu-open", menuWillOpen);
 });
 
 menuOverlay.addEventListener("click", () => {
@@ -162,3 +201,91 @@ closeMenu.addEventListener("click", () => {
   mobileMenu.classList.remove("show-menu");
   menuOverlay.classList.remove("show-overlay");
 });
+// ================================================
+// GLASS ORBS HERO PARALLAX
+// ================================================
+
+const heroSection = document.querySelector(".hero");
+const heroOrbs = document.querySelectorAll(".glass-orb");
+
+if (heroSection && heroOrbs.length) {
+  heroSection.addEventListener("mousemove", (event) => {
+    const heroRect = heroSection.getBoundingClientRect();
+
+    const mouseX =
+      (event.clientX - heroRect.left) / heroRect.width - 0.5;
+
+    const mouseY =
+      (event.clientY - heroRect.top) / heroRect.height - 0.5;
+
+    heroOrbs.forEach((orb) => {
+      const depth = Number(orb.dataset.depth) || 20;
+
+      orb.style.marginLeft = `${mouseX * depth}px`;
+      orb.style.marginTop = `${mouseY * depth}px`;
+    });
+  });
+
+  heroSection.addEventListener("mouseleave", () => {
+    heroOrbs.forEach((orb) => {
+      orb.style.marginLeft = "0px";
+      orb.style.marginTop = "0px";
+    });
+  });
+}
+// ================================================
+// FLOATING MENU BUTTON AFTER SCROLL STOPS
+// ================================================
+
+const floatingMenuBtn = document.getElementById("floatingMenuBtn");
+
+let scrollStopTimer;
+
+function openNavigationMenu() {
+  mobileMenu.classList.add("show-menu");
+  menuOverlay.classList.add("show-overlay");
+  document.body.classList.add("menu-open");
+
+  floatingMenuBtn.classList.remove("show");
+}
+
+function closeNavigationMenu() {
+  mobileMenu.classList.remove("show-menu");
+  menuOverlay.classList.remove("show-overlay");
+  document.body.classList.remove("menu-open");
+}
+
+floatingMenuBtn.addEventListener("click", openNavigationMenu);
+
+/* Keep your original top menu button working */
+menuToggle.addEventListener("click", () => {
+  document.body.classList.toggle(
+    "menu-open",
+    mobileMenu.classList.contains("show-menu")
+  );
+});
+
+/* Update existing close actions */
+closeMenu.addEventListener("click", closeNavigationMenu);
+menuOverlay.addEventListener("click", closeNavigationMenu);
+
+window.addEventListener(
+  "scroll",
+  () => {
+    clearTimeout(scrollStopTimer);
+
+    floatingMenuBtn.classList.remove("show");
+
+    /* Do not show it near the top or while menu is open */
+    if (window.scrollY < 180 || document.body.classList.contains("menu-open")) {
+      return;
+    }
+
+    scrollStopTimer = setTimeout(() => {
+      if (!document.body.classList.contains("menu-open")) {
+        floatingMenuBtn.classList.add("show");
+      }
+    }, 500);
+  },
+  { passive: true }
+);
