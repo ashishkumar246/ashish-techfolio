@@ -2506,22 +2506,6 @@ body.light-mode .floating-menu-btn {
   animation: loaderTitleShine 2.4s linear infinite;
 }
 
-.loader-message {
-  min-height: 24px;
-  margin-top: 18px;
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  transition:
-    opacity 0.22s ease,
-    transform 0.22s ease;
-}
-
-.loader-message.is-changing {
-  opacity: 0;
-  transform: translateY(7px);
-}
 
 .loader-orb {
   position: absolute;
@@ -2619,11 +2603,6 @@ body.light-mode .floating-menu-btn {
     height: 120px;
   }
 
-  .loader-message {
-    padding: 0 20px;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -2632,9 +2611,6 @@ body.light-mode .floating-menu-btn {
     height: 105px;
   }
 
-  .loader-message {
-    font-size: 11px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -3,41 +3,27 @@
 const percentEl = document.getElementById("percentage");
 const loader = document.getElementById("loader");
 const homepage = document.getElementById("homepage");
-const loaderMessage = document.getElementById("loaderMessage");
+
 
 const totalDuration = 3500;
 const interval = 20;
 
-const loaderMessages = [
-  "Building Intelligent Products...",
-  "Designing Experiences...",
-  "Engineering AI...",
-  "Building Scalable Backends...",
-  "Almost Ready..."
-];
 
-const messageDuration = totalDuration / loaderMessages.length;
 
 let elapsed = 0;
-let currentMessageIndex = 0;
+
 
 function easeOut(progress) {
   return 1 - Math.pow(1 - progress, 3);
 }
 
-function updateLoaderMessage(index) {
-  if (!loaderMessage || index === currentMessageIndex) {
-    return;
-  }
 
-  currentMessageIndex = index;
-  loaderMessage.classList.add("is-changing");
+  
+  
 
-  setTimeout(() => {
-    loaderMessage.textContent = loaderMessages[index];
-    loaderMessage.classList.remove("is-changing");
-  }, 220);
-}
+  
+  
+  
 
 const counter = setInterval(() => {
   elapsed += interval;
@@ -47,18 +33,12 @@ const counter = setInterval(() => {
 
   percentEl.textContent = Math.floor(percentProgress * 100);
 
-  const nextMessageIndex = Math.min(
-    Math.floor(elapsed / messageDuration),
-    loaderMessages.length - 1
-  );
 
-  updateLoaderMessage(nextMessageIndex);
 
   if (elapsed >= totalDuration) {
     clearInterval(counter);
 
     percentEl.textContent = 100;
-    loaderMessage.textContent = "Almost Ready...";
 
     setTimeout(() => {
       loader.classList.add("loader-complete");
