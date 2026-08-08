@@ -269,3 +269,167 @@ window.addEventListener(
   },
   { passive: true }
 );
+// ================================================
+// HOW I BUILD - INTERACTIVE PIPELINE
+// ================================================
+
+const buildSteps = document.querySelectorAll(".build-step");
+const pipelineProof = document.getElementById("pipelineProof");
+const pipelineHint = document.querySelector(".pipeline-hint");
+
+const pipelineContent = {
+  understand: {
+    label: "UNDERSTAND",
+    title: "Product Analysis",
+    description:
+      "I start by understanding the business problem, requirements, use cases, and stakeholder expectations before defining what should be built.",
+    tags: [
+      "PRODUCT ANALYSIS",
+      "REQUIREMENTS",
+      "CLIENT DISCUSSIONS",
+      "STAKEHOLDERS"
+    ],
+    linkText: "VIEW EXPERIENCE →",
+    link: "#experience"
+  },
+
+  design: {
+    label: "DESIGN",
+    title: "UI/UX & Product Design",
+    description:
+      "I translate requirements into structured user journeys, product flows, and interface designs before development begins.",
+    tags: [
+      "UI/UX",
+      "FIGMA",
+      "USER FLOWS",
+      "PRODUCT DESIGN"
+    ],
+    linkText: "VIEW DESIGN WORK ↗",
+    link: "https://www.behance.net/98f2ad75",
+    external: true
+  },
+
+  build: {
+    label: "BUILD",
+    title: "Backend + Generative AI",
+    description:
+      "I can take a defined solution into implementation using backend systems, APIs, databases, and AI-powered workflows.",
+    tags: [
+      "PYTHON",
+      "FASTAPI",
+      "POSTGRESQL",
+      "APIs",
+      "RAG",
+      "LLMs"
+    ],
+    linkText: "VIEW PROJECTS →",
+    link: "#projects"
+  },
+
+  test: {
+    label: "TEST",
+    title: "QA & Edge-Case Thinking",
+    description:
+      "I validate features through happy paths, failure scenarios, edge cases, API behaviour, and requirement checks before considering the solution complete.",
+    tags: [
+      "QA",
+      "EDGE CASES",
+      "API TESTING",
+      "VALIDATION"
+    ]
+  },
+
+  ship: {
+    label: "SHIP",
+    title: "Cross-functional Delivery",
+    description:
+      "I work across Product, Design, Engineering, and QA to move requirements from discussion toward implementation and release.",
+    tags: [
+      "PRODUCT",
+      "DESIGN",
+      "ENGINEERING",
+      "QA",
+      "DELIVERY"
+    ],
+    linkText: "VIEW EXPERIENCE →",
+    link: "#experience"
+  }
+};
+
+buildSteps.forEach(step => {
+  step.addEventListener("click", () => {
+    const stage = step.dataset.stage;
+    const content = pipelineContent[stage];
+
+    if (!content) return;
+    // If the same stage is clicked again, close it
+if (step.classList.contains("active")) {
+
+  step.classList.remove("active");
+  pipelineProof.classList.remove("show");
+
+  if (pipelineHint) {
+    pipelineHint.textContent = "CLICK TO EXPLORE";
+  }
+
+  return;
+}
+
+    // Remove active state from all stages
+    buildSteps.forEach(item => {
+      item.classList.remove("active");
+    });
+
+    // Highlight clicked stage
+    step.classList.add("active");
+
+    // Change hint
+    if (pipelineHint) {
+      pipelineHint.textContent = "EXPLORE ANOTHER STAGE";
+    }
+
+    // Create tags
+    const tagsHTML = content.tags
+      .map(tag => `<span>${tag}</span>`)
+      .join("");
+
+    // Create link only if the stage has one
+    let linkHTML = "";
+
+    if (content.link) {
+      const target = content.external
+        ? `target="_blank" rel="noopener noreferrer"`
+        : "";
+
+      linkHTML = `
+        <a
+          href="${content.link}"
+          class="pipeline-proof-link"
+          ${target}
+        >
+          ${content.linkText}
+        </a>
+      `;
+    }
+
+    // Update proof panel
+    // Update proof panel
+pipelineProof.innerHTML = `
+ <p class="pipeline-proof-label">${content.label}</p>
+  <h3>${content.title}</h3>
+
+  <p class="pipeline-proof-description">
+    ${content.description}
+  </p>
+
+  <div class="pipeline-proof-tags">
+    ${tagsHTML}
+  </div>
+
+  ${linkHTML}
+`;
+
+pipelineProof.classList.add("show");
+
+  });
+});

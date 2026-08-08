@@ -2652,14 +2652,582 @@ body.light-mode .floating-menu-btn {
   }
 }
 
+/* ================================================
+   HOW I BUILD PIPELINE
+================================================ */
+
+.build-pipeline {
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+}
+
+.build-step {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 10px 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  color: rgba(255, 255, 255, 0.72);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.build-number {
+  color: #ffb000;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.build-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.build-line {
+  width: 28px;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 176, 0, 0.15),
+    rgba(255, 176, 0, 0.65),
+    rgba(255, 176, 0, 0.15)
+  );
+}
+
+.build-step.active {
+  color: white;
+
+  border-color: rgba(255, 176, 0, 0.55);
+
+  background: rgba(255, 176, 0, 0.08);
+
+  box-shadow:
+    0 0 18px rgba(255, 176, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.build-step:hover {
+  transform: translateY(-3px);
+  color: white;
+  border-color: rgba(255, 176, 0, 0.45);
+  background: rgba(255, 176, 0, 0.06);
+}
 
 
+/* Light mode */
+body.light-mode .build-step {
+  color: #333;
+  border-color: rgba(0, 0, 0, 0.11);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+body.light-mode .build-step.active {
+  color: #111;
+  border-color: rgba(184, 120, 0, 0.45);
+  background: rgba(255, 176, 0, 0.12);
+}
 
 
+/* Tablet / Mobile */
+@media (max-width: 768px) {
+
+  .build-pipeline {
+    margin-top: 26px;
+    gap: 10px;
+  }
+
+  .build-line {
+    width: 18px;
+  }
+
+  .build-step {
+    padding: 9px 12px;
+  }
+
+  .build-title {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+
+}
 
 
+/* Small phones */
+@media (max-width: 480px) {
+
+  .build-pipeline {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .build-line {
+    display: none;
+  }
+
+  .build-step {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .build-step:last-of-type {
+    grid-column: 1 / -1;
+  }
+
+}
+/* ==================================================
+   MOBILE HERO + PIPELINE COMPACT FIX
+================================================== */
+
+@media (max-width: 768px) {
+
+  /* Bring hero closer to navbar */
+  .hero {
+    margin-top: 18px !important;
+    padding-top: 24px !important;
+  }
+
+  .hero-line {
+    margin-bottom: 20px !important;
+  }
+
+  .hero-tag {
+    margin-bottom: 18px !important;
+  }
+
+  .hero h1 {
+    margin-bottom: 18px !important;
+  }
+
+  .hero-description {
+    line-height: 1.45;
+  }
 
 
+  /* ---------- PIPELINE ---------- */
+
+  .build-pipeline {
+    display: flex;
+    flex-wrap: nowrap !important;
+    align-items: center;
+
+    width: 100%;
+    max-width: 100%;
+
+    gap: 6px;
+    margin-top: 20px;
+  }
+
+  /* Hide connector lines on smaller screens
+     so all 5 stages fit comfortably */
+  .build-line {
+    display: none;
+  }
+
+  .build-step {
+    flex: 1 1 0;
+    min-width: 0;
+
+    justify-content: center;
+
+    gap: 4px;
+    padding: 8px 5px;
+
+    white-space: nowrap;
+  }
+
+  .build-number {
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+
+  .build-title {
+    font-size: 9px;
+    letter-spacing: 0.7px;
+  }
+
+
+  /* Bring buttons upward as well */
+  .hero-buttons {
+    margin-top: 22px !important;
+  }
+}
+@media (max-width: 480px) {
+
+  .build-pipeline {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    grid-template-columns: none !important;
+    gap: 4px;
+  }
+
+  .build-step {
+    flex: 1 1 0;
+    width: auto;
+    padding: 7px 3px;
+  }
+
+  .build-step:last-of-type {
+    grid-column: auto;
+  }
+
+  .build-number {
+    font-size: 8px;
+  }
+
+  .build-title {
+    font-size: 8px;
+    letter-spacing: 0.3px;
+  }
+}
+/* ==================================================
+   FINAL MOBILE HERO COMPACT FIX
+================================================== */
+
+@media (max-width: 768px) {
+
+  /* Keep motto on ONE line */
+  .hero-description {
+    font-size: clamp(10px, 2.25vw, 17px) !important;
+    line-height: 1.4 !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  /* Keep entire pipeline on ONE line */
+  .build-pipeline {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 7px !important;
+    margin-top: 22px !important;
+  }
+
+  .build-line {
+    display: none !important;
+  }
+
+  .build-step {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    width: auto !important;
+
+    padding: 9px 3px !important;
+    gap: 4px !important;
+
+    justify-content: center !important;
+    white-space: nowrap !important;
+  }
+
+  .build-number {
+    font-size: clamp(7px, 1.3vw, 10px) !important;
+    letter-spacing: 0 !important;
+  }
+
+  .build-title {
+    font-size: clamp(7px, 1.35vw, 10px) !important;
+    letter-spacing: 0.3px !important;
+  }
+}
+
+
+/* Extra protection for very small phones */
+@media (max-width: 480px) {
+
+  .hero-description {
+    font-size: clamp(8px, 2.35vw, 11px) !important;
+  }
+
+  .build-pipeline {
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-wrap: nowrap !important;
+    gap: 3px !important;
+  }
+
+  .build-step {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    padding: 7px 1px !important;
+  }
+
+  .build-step:last-of-type {
+    grid-column: auto !important;
+  }
+
+  .build-number {
+    font-size: 7px !important;
+  }
+
+  .build-title {
+    font-size: 7px !important;
+    letter-spacing: 0 !important;
+  }
+}
+/* ================================================
+   PIPELINE INTRO
+================================================ */
+
+.pipeline-intro {
+  margin: 20px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.3px;
+}
+
+.pipeline-hint {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 4px 9px;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+
+  color: #ffb000;
+
+  border: 1px solid rgba(255, 176, 0, 0.35);
+  border-radius: 999px;
+
+  background: rgba(255, 176, 0, 0.05);
+}
+
+body.light-mode .pipeline-intro {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .pipeline-intro {
+    margin-top: 14px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .pipeline-hint {
+    margin-left: 5px;
+    padding: 3px 6px;
+    font-size: 7px;
+    letter-spacing: 0.7px;
+  }
+
+}
+/* ================================================
+   PIPELINE GLASS CONTAINER
+================================================ */
+
+.pipeline-box {
+  margin-top: 22px;
+  padding: 18px 20px 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 18px 45px rgba(0, 0, 0, 0.20);
+}
+
+.pipeline-box .pipeline-intro {
+  margin-top: 0;
+}
+
+.pipeline-box .build-pipeline {
+  margin-top: 16px !important;
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .pipeline-box {
+    padding: 14px 12px 15px;
+    border-radius: 15px;
+  }
+
+  .pipeline-box .build-pipeline {
+    margin-top: 13px !important;
+  }
+}
+
+/* ================================================
+   PIPELINE PROOF PANEL
+================================================ */
+
+.build-step {
+  cursor: pointer;
+}
+
+.pipeline-proof {
+  margin-top: 16px;
+  padding: 0;
+
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+
+  border-top: 1px solid transparent;
+
+  transition:
+    max-height 0.4s ease,
+    opacity 0.3s ease,
+    padding 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.pipeline-proof.show {
+  max-height: 260px;
+  opacity: 1;
+
+  padding: 18px 4px 2px;
+
+  border-top-color: rgba(255, 255, 255, 0.09);
+}
+
+.pipeline-proof-label {
+  color: #ffb000;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 7px;
+}
+
+.pipeline-proof h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.pipeline-proof-description {
+  max-width: 760px;
+
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.pipeline-proof-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  margin-top: 12px;
+}
+
+.pipeline-proof-tags span {
+  padding: 5px 9px;
+
+  border: 1px solid rgba(255, 176, 0, 0.18);
+  border-radius: 999px;
+
+  color: #ffc14d;
+  background: rgba(255, 176, 0, 0.06);
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.pipeline-proof-link {
+  display: inline-block;
+  margin-top: 13px;
+
+  color: #ffffff;
+  text-decoration: none;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.pipeline-proof-link:hover {
+  color: #ffb000;
+}
+
+@media (max-width: 768px) {
+
+  .pipeline-proof.show {
+    max-height: 300px;
+    padding-top: 14px;
+  }
+
+  .pipeline-proof h3 {
+    font-size: 16px;
+  }
+
+  .pipeline-proof-description {
+    font-size: 10px;
+  }
+
+  .pipeline-proof-tags span {
+    font-size: 7px;
+    padding: 4px 6px;
+  }
+
+}
+
+/* ================================================
+   MOBILE MENU WIDTH FIX
+================================================ */
+
+@media (max-width: 768px) {
+
+  .mobile-menu {
+    width: 65vw !important;
+    max-width: 320px !important;
+    right: -100% !important;
+
+    padding: 90px 28px 40px !important;
+  }
+
+  .mobile-menu.show-menu {
+    right: 0 !important;
+  }
+
+  .mobile-menu a {
+    font-size: 16px !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  .close-menu-btn {
+    top: 24px !important;
+    left: 24px !important;
+  }
+}
 
 
 
