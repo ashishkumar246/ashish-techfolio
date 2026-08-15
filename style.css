@@ -2652,8 +2652,65 @@ body.light-mode .floating-menu-btn {
   }
 }
 
+/* RESEARCH HEADER */
 
+.research-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
 
+.research-heading-row h2 {
+  margin-bottom: 0;
+}
+
+.research-heading-row + .projects-grid {
+  margin-top: 50px;
+}
+
+.research-view-all {
+  flex-shrink: 0;
+  padding: 14px 20px;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+  .research-heading-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+/* =========================================
+   RESEARCH LIBRARY PAGE
+========================================= */
+
+.research-page {
+  min-height: 100vh;
+  padding: 40px 36px 80px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.research-page .projects-section {
+  margin-top: 70px;
+  padding-top: 40px;
+}
+
+.research-page .section-heading h2 {
+  font-size: clamp(48px, 6vw, 80px);
+}
+
+@media (max-width: 768px) {
+  .research-page {
+    padding: 25px 22px 60px;
+  }
+
+  .research-page .projects-section {
+    margin-top: 45px;
+  }
+}
 
 
 
